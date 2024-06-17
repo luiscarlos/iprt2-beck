@@ -3,6 +3,7 @@ package br.com.lc.iprt2.resouce;
 import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.OpInc;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
+import br.com.lc.iprt2.service.MembroService;
 
 
 @RestController
@@ -32,8 +34,10 @@ public class MembroResource {
 	private MembroService membroService;
 	
 	@GetMapping
-	public List<Membro> listar(){
-		return membroRepository.findAll();
+	public ResponseEntity<List<MembroDTO>> listar(){
+		List<Membro>  lista = membroService.findAll();
+		List<MembroDTO> listaDTO = lista.stream().map(obj -> new MembroDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok(listaDTO);
 		
 	}
 	
