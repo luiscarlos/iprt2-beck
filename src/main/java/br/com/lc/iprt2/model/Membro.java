@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.model.ennums.UserRole;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,7 +41,7 @@ public class Membro implements Serializable {
 	private UserRole role;
 
 	
-	@JsonIgnore
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
@@ -82,6 +83,19 @@ public class Membro implements Serializable {
 		this.dataConversao = dataConversao;
 		this.dataNascimento = dataNascimento;
 		
+	}
+	
+	public Membro(MembroDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.telefone = obj.getTelefone();
+		this.role = obj.getRole();
+		//this.endereco = obj.getEndereco();
+		this.dataConversao = obj.getDataConversao();
+		this.dataNascimento = obj.getDataNascimento();
 	}
 
 

@@ -28,6 +28,13 @@ public class MembroService {
 		return membroRepository.findAll();
 		
 	}
+
+
+	public Membro create(MembroDTO membroDTO) {
+		membroDTO.setId(null);
+		Membro membro = new Membro(membroDTO);
+		return membroRepository.save(membro);
+	}
 	
 	
 }

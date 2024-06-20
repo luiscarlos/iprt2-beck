@@ -2,24 +2,18 @@ package br.com.lc.iprt2.model.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.lc.iprt2.model.Endereco;
-import br.com.lc.iprt2.model.Evento;
+
 import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.ennums.UserRole;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+
 
 public class MembroDTO implements Serializable {
 
@@ -28,13 +22,13 @@ public class MembroDTO implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nome;
-	private String email;
-	private String senha;
-	private String telefone;
-	private UserRole role;
-	private Endereco endereco;
+	protected Integer id;
+	protected String nome;
+	protected String email;
+	protected String senha;
+	protected String telefone;
+	protected UserRole role;
+	protected Endereco endereco;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataConversao;

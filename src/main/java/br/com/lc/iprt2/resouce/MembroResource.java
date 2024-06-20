@@ -1,17 +1,18 @@
 package br.com.lc.iprt2.resouce;
 
-import java.lang.StackWalker.Option;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.OpInc;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
@@ -19,6 +20,9 @@ import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.MembroService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -46,6 +50,21 @@ public class MembroResource {
 	public ResponseEntity<MembroDTO> buscarPeloCodigo(@PathVariable Integer id) {
 	Membro membro = this.membroService.buscarPoId(id);
 	return ResponseEntity.ok().body(new MembroDTO(membro));
+	}
+	
+	
+	@PostMapping()
+	public ResponseEntity<MembroDTO> create(@RequestBody MembroDTO  objDTO) {
+		
+		Membro membro = membroService.create(objDTO);
+		
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(membro.getId()).toUri();
+		
+        // response.setHeader("Location", uri.toASCIIString());
+		
+		return ResponseEntity.created(uri).build();
 	}
 
 }
