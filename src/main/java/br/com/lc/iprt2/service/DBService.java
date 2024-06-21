@@ -61,26 +61,21 @@ public class DBService {
 			//dev.addRole(UserRole.ADMIN);
 
 			
-			Endereco endereco1 = new Endereco();
-			endereco.setLogradouro("Rua exemplo");
-			endereco.setNumero("123");
-			endereco.setCidade("Cidade exemplo");
-			endereco.setEstado("Estado exemplo");
-			Igreja ig = new Igreja(null, "Joao", LocalDate.now(),LocalDate.now(), LocalDate.now(), endereco1);
+			
 			//dev.addRole(UserRole.ADMIN);
 
 			Servico ser = new Servico(null, LocalDate.now(), "Teste", me, Presenca.FALTOU);
 			
-			Evento ev = new Evento(null, "Encontro de mulheres", LocalDate.now(), LocalDate.now(), Status.ABERTO, Departamento.HOMENS, "Teste evento", me, ig);
+			//Evento ev = new Evento(null, "Encontro de mulheres", LocalDate.now(), LocalDate.now(), Status.ABERTO, Departamento.HOMENS, "Teste evento", me, ig);
 			
 			EscalaCulto esc = new EscalaCulto(null, LocalDate.now(), me, Seguimento.CEIA, Departamento.HOMENS, "Ediel");
 
 			membroRepository.saveAll(Arrays.asList(me));
-			igrejaRepository.saveAll(Arrays.asList(ig));
+			//igrejaRepository.saveAll(Arrays.asList(ig));
 			servicoRepository.saveAll(Arrays.asList(ser));
-			eventoRepository.saveAll(Arrays.asList(ev));
+			//eventoRepository.saveAll(Arrays.asList(ev));
 			escalaCultoRepository.saveAll(Arrays.asList(esc));
-			enderecoRepository.saveAll(Arrays.asList(endereco1));
+			//enderecoRepository.saveAll(Arrays.asList(endereco1));
 	}
 
 }

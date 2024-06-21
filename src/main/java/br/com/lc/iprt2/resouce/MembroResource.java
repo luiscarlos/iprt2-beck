@@ -3,9 +3,6 @@ package br.com.lc.iprt2.resouce;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-
-
 import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.MembroService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -58,13 +53,15 @@ public class MembroResource {
 		
 		Membro membro = membroService.create(objDTO);
 		
+		MembroDTO membroDTO = new MembroDTO(membro);
+	
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(membro.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(membroDTO.getId()).toUri();
 		
-        // response.setHeader("Location", uri.toASCIIString());
+        //response.setHeader("Location", uri.toASCIIString());
 		
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(membroDTO);
 	}
 
 }
