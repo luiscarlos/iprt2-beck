@@ -93,7 +93,7 @@ public class Membro implements Serializable {
 		this.senha = obj.getSenha();
 		this.telefone = obj.getTelefone();
 		this.role = obj.getRole();
-		//this.endereco = obj.getEndereco();
+		this.endereco = obj.getEndereco();
 		this.dataConversao = obj.getDataConversao();
 		this.dataNascimento = obj.getDataNascimento();
 	}
