@@ -21,6 +21,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Membro implements Serializable {
@@ -31,12 +32,17 @@ public class Membro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotNull(message ="O campo NOME é requerido!")
 	private String nome;
-
+	
+	@NotNull(message ="O campo E-MAIL é requerido!")
 	@Column(unique = true)
 	private String email;
-
+	
+	@NotNull(message ="O campo SENHA é requerido!")
 	private String senha;
+	
+	@NotNull(message ="O campo TELEFONE é requerido!")
 	private String telefone;
 	private UserRole role;
 
@@ -46,9 +52,11 @@ public class Membro implements Serializable {
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
 
+	@NotNull(message ="O campo DATA DE CONVERSÃO é requerido!")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataConversao;
 
+	@NotNull(message ="O campo DATA DE NASCIMENTO é requerido!")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 

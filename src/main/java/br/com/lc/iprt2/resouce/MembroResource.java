@@ -18,7 +18,8 @@ import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.MembroService;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -53,7 +54,7 @@ public class MembroResource {
 	
 	
 	@PostMapping()
-	public ResponseEntity<MembroDTO> create(@jakarta.validation.Valid @RequestBody MembroDTO  objDTO) { //HttpServletResponse response
+	public ResponseEntity<MembroDTO> create(@Valid @RequestBody MembroDTO  objDTO) { //HttpServletResponse response
 		
 		Membro membro = membroService.create(objDTO);
 		

@@ -12,8 +12,8 @@ import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.exceptions.DataIntegrityViolationException;
-import br.com.lc.iprt2.service.exceptions.HttpMessageNotReadableException;
-import br.com.lc.iprt2.service.exceptions.ObjectNotFoundException;
+import br.com.lc.iprt2.service.exceptions.ObjectnotFoundException;
+import jakarta.validation.ConstraintViolationException;
 
 @Service
 public class MembroService {
@@ -24,7 +24,7 @@ public class MembroService {
 	
 	public Membro buscarPoId(Integer id) {
 		java.util.Optional<Membro> membro = membroRepository.findById(id);
-		return membro.orElseThrow(() -> new ObjectNotFoundException("Membro não encontrado! id: " + id));
+		return membro.orElseThrow(() -> new ObjectnotFoundException("Membro não encontrado! id: " + id));
 	}
 
 
@@ -42,7 +42,7 @@ public class MembroService {
 	}
 
 
-	private void validaPorEmail(MembroDTO membroDTO) throws DataIntegrityViolationException, HttpMessageNotReadableException{
+	private void validaPorEmail(MembroDTO membroDTO)throws ConstraintViolationException{
 		java.util.Optional<Membro> membro = membroRepository.findByEmail(membroDTO.getEmail());
 		
 		if(membro.isPresent() && membro.get().getId() != membroDTO.getId()) {
