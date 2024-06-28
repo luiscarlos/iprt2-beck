@@ -1,19 +1,8 @@
 package br.com.lc.iprt2.resouce.exceptions;
 
 
+import javax.servlet.http.HttpServletRequest;
 
-
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.hibernate.mapping.Set;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,20 +10,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import br.com.lc.iprt2.service.exceptions.DataIntegrityViolationException;
-
 import br.com.lc.iprt2.service.exceptions.ObjectnotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
+
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@Autowired
-	private MessageSource messageSource;
+
 	
 	@ExceptionHandler(ObjectnotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFoundException(ObjectnotFoundException ex,
@@ -47,7 +32,7 @@ public class ResourceExceptionHandler {
 		
 	}
 	
-	@ExceptionHandler(ConstraintViolationException.class)
+	/*@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<StandardError> objectNotFoundException(ConstraintViolationException ex,
 			HttpServletRequest request){
 		
@@ -56,7 +41,7 @@ public class ResourceExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 		
-	}
+	}*/
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException ex,

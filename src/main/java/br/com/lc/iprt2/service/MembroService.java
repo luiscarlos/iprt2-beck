@@ -3,7 +3,7 @@ package br.com.lc.iprt2.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.exceptions.DataIntegrityViolationException;
 import br.com.lc.iprt2.service.exceptions.ObjectnotFoundException;
-import jakarta.validation.ConstraintViolationException;
+
 
 @Service
 public class MembroService {

@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.dtos.MembroDTO;
 import br.com.lc.iprt2.repositories.MembroRepository;
 import br.com.lc.iprt2.service.MembroService;
-import jakarta.validation.Valid;
+
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

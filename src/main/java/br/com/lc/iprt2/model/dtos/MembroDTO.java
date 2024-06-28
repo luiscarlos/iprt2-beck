@@ -3,6 +3,9 @@ package br.com.lc.iprt2.model.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.lc.iprt2.model.Endereco;
@@ -10,9 +13,7 @@ import br.com.lc.iprt2.model.Endereco;
 import br.com.lc.iprt2.model.Membro;
 import br.com.lc.iprt2.model.ennums.UserRole;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 
 
 public class MembroDTO implements Serializable {
@@ -20,8 +21,14 @@ public class MembroDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected Integer id;
+	@NotNull
+	@NotBlank
 	protected String nome;
+	@NotNull
+	@NotBlank
 	protected String email;
+	@NotNull
+	@NotBlank
 	protected String senha;
 	protected String telefone;
 	protected UserRole role;
