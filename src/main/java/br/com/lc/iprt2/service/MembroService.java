@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,17 @@ public class MembroService {
 		    throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");	
 		    
 		}
+	}
+
+
+	public Membro update(Integer id, @Valid MembroDTO membroDTO) {
+		membroDTO.setId(id);
+		Membro membroAntigo = buscarPoId(id);
+		validaPorEmail(membroDTO);
+		membroAntigo = new Membro(membroDTO);
+		return membroRepository.save(membroAntigo);
+		
+		
 	}
 	
 }

@@ -21,6 +21,7 @@ import br.com.lc.iprt2.service.MembroService;
 
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -41,10 +42,9 @@ public class MembroResource {
 	public ResponseEntity<List<MembroDTO>> listar(){
 		List<Membro>  lista = membroService.findAll();
 		List<MembroDTO> listaDTO = lista.stream().map(obj -> new MembroDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok(listaDTO);
+		return ResponseEntity.ok().body(listaDTO);
 		
 	}
-	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<MembroDTO> buscarPeloCodigo(@PathVariable Integer id) {
@@ -67,6 +67,12 @@ public class MembroResource {
         //response.setHeader("Location", uri.toASCIIString());
 		
 		return ResponseEntity.created(uri).body(membroDTO);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<MembroDTO> update(@PathVariable Integer id, @Valid @RequestBody MembroDTO membroDTO){
+		Membro membro = membroService.update(id, membroDTO);
+		return ResponseEntity.ok().body(new MembroDTO(membro));
 	}
 
 }
