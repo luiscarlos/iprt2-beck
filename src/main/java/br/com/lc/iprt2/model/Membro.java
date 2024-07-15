@@ -62,11 +62,12 @@ public class Membro implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 
+	/*
 	@JsonIgnore
 	@OneToMany(mappedBy = "membro")
 	List<Evento> eventos = new ArrayList<>();
 	
-	/*
+	
 	@OneToMany(mappedBy = "membro")
 	List<EscalaCulto> EscalaCulto = new ArrayList<>();
 	
@@ -198,7 +199,7 @@ public class Membro implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-
+	/*
 	public List<Evento> getEventos() {
 		return eventos;
 	}
@@ -207,7 +208,7 @@ public class Membro implements Serializable {
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
-
+  */
 
 
 

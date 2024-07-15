@@ -11,6 +11,7 @@ public interface MembroRepository extends JpaRepository<Membro, Integer>{
 
 
 Optional<Membro> findByEmail(String email);
+Optional<Membro> findById(Integer id);
 
 
 
