@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -45,6 +46,8 @@ public class Igreja implements Serializable{
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
 	
+	
+	//@JsonIgnore
 	@OneToMany(mappedBy = "igreja")
 	List<Evento> eventos = new ArrayList<>();
 	
@@ -68,7 +71,7 @@ public class Igreja implements Serializable{
 
 
 
-	public List<Evento> getEventos() {
+	/*public List<Evento> getEventos() {
 		return eventos;
 	}
 
@@ -76,7 +79,7 @@ public class Igreja implements Serializable{
 
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
-	}
+	}*/
 
 
 

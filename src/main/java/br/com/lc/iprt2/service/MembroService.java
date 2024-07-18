@@ -24,7 +24,7 @@ public class MembroService {
 	private MembroRepository membroRepository;
 	
 	
-	public Membro buscarPoId(Integer id) {
+	public Membro findById(Integer id) {
 		java.util.Optional<Membro> membro = membroRepository.findById(id);
 		return membro.orElseThrow(() -> new ObjectnotFoundException("Membro não encontrado! id: " + id));
 	}
@@ -43,31 +43,31 @@ public class MembroService {
 		return membroRepository.save(membro);
 	}
 
+	
+	public Membro update(Integer id, @Valid MembroDTO membroDTO) {
+		membroDTO.setId(id);
+		Membro oldObj = findById(id);
+		
+		validaPorEmail(membroDTO);
+		oldObj = new Membro(membroDTO);
+		return membroRepository.save(oldObj);
+		
+	}
 
 	private void validaPorEmail(MembroDTO membroDTO)throws ConstraintViolationException{
 		java.util.Optional<Membro> membro = membroRepository.findByEmail(membroDTO.getEmail());
 		
-		if(membro.isPresent() && membro.get().getId() != membroDTO.getId()) {
-			
-			
-		    throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");	
-		    
-		}
+		 if (membro.isPresent() && !membro.get().getId().equals(membroDTO.getId())) {
+	            throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
+	        }
 	}
 
 
-	public Membro update(Integer id, @Valid MembroDTO membroDTO) {
-		membroDTO.setId(id);
-		Membro membroAntigo = buscarPoId(id);
-		validaPorEmail(membroDTO);
-		membroAntigo = new Membro(membroDTO);
-		return membroRepository.save(membroAntigo);
-		
-	}
+	
 
 
 	public void delete(Integer id) {
-	    Membro membro = buscarPoId(id);
+	    Membro membro = findById(id);
 	    membroRepository.deleteById(membro.getId());
 	   
 	}

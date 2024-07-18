@@ -40,11 +40,11 @@ public class Evento {
 	private String observacoes;
 	
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "membro_id")
 	private Membro membro;
 	
-
+    */
 	@ManyToOne
 	@JoinColumn(name = "igreja_id")
 	private Igreja igreja;

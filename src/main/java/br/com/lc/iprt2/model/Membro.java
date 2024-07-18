@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.lc.iprt2.model.dtos.MembroDTO;
+import br.com.lc.iprt2.model.ennums.Dizimista;
 import br.com.lc.iprt2.model.ennums.UserRole;
 
 
@@ -48,7 +49,8 @@ public class Membro implements Serializable {
 	private String telefone;
 	private UserRole role;
 
-	
+	@NotNull(message ="O campo DIZIMISTA é requerido!")
+	private Dizimista dizimista;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
@@ -82,7 +84,7 @@ public class Membro implements Serializable {
 
 	
 	public Membro(Integer id, String nome, String email, String senha, String telefone, UserRole role,
-			Endereco endereco, LocalDate dataConversao, LocalDate dataNascimento) {
+			Dizimista dizimista, Endereco endereco, LocalDate dataConversao, LocalDate dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -104,6 +106,7 @@ public class Membro implements Serializable {
 		this.senha = obj.getSenha();
 		this.telefone = obj.getTelefone();
 		this.role = obj.getRole();
+		this.dizimista = obj.getDizimista();
 		this.endereco = obj.getEndereco();
 		this.dataConversao = obj.getDataConversao();
 		this.dataNascimento = obj.getDataNascimento();
@@ -198,6 +201,8 @@ public class Membro implements Serializable {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
+	
 
 	/*
 	public List<Evento> getEventos() {
@@ -214,6 +219,16 @@ public class Membro implements Serializable {
 
 
 	
+
+
+	public Dizimista getDizimista() {
+		return dizimista;
+	}
+
+
+	public void setDizimista(Dizimista dizimista) {
+		this.dizimista = dizimista;
+	}
 
 
 	@Override

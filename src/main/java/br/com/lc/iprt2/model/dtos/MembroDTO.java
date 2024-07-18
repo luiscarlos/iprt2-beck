@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.lc.iprt2.model.Endereco;
 
 import br.com.lc.iprt2.model.Membro;
+import br.com.lc.iprt2.model.ennums.Dizimista;
 import br.com.lc.iprt2.model.ennums.UserRole;
 
 
@@ -21,22 +22,43 @@ public class MembroDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected Integer id;
+	
 	@NotNull
 	@NotBlank
 	protected String nome;
+	
 	@NotNull
 	@NotBlank
 	protected String email;
+	
 	@NotNull
 	@NotBlank
 	protected String senha;
+	
+	@NotNull
+	@NotBlank
 	protected String telefone;
+	
+	@NotNull
+	@NotBlank
 	protected UserRole role;
+	
+	@NotNull
+	@NotBlank
+	protected Dizimista dizimista;
+	
+	@NotNull
+	@NotBlank
 	protected Endereco endereco;
-
+	
+	
+	@NotNull
+	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataConversao;
-
+	
+	@NotNull
+	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 
@@ -53,6 +75,7 @@ public class MembroDTO implements Serializable {
 		this.senha = obj.getSenha();
 		this.telefone = obj.getTelefone();
 		this.role = obj.getRole();
+		this.dizimista = obj.getDizimista();
 		this.endereco = obj.getEndereco();
 		this.dataConversao = obj.getDataConversao();
 		this.dataNascimento = obj.getDataNascimento();
@@ -121,6 +144,17 @@ public class MembroDTO implements Serializable {
 
 	public Endereco getEndereco() {
 		return endereco;
+	}
+
+	
+
+	public Dizimista getDizimista() {
+		return dizimista;
+	}
+
+
+	public void setDizimista(Dizimista dizimista) {
+		this.dizimista = dizimista;
 	}
 
 

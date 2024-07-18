@@ -48,7 +48,7 @@ public class MembroResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<MembroDTO> buscarPeloCodigo(@PathVariable Integer id) {
-	Membro membro = this.membroService.buscarPoId(id);
+	Membro membro = this.membroService.findById(id);
 	return ResponseEntity.ok().body(new MembroDTO(membro));
 	}
 	
@@ -70,9 +70,9 @@ public class MembroResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<MembroDTO> update(@PathVariable Integer id, @Valid @RequestBody MembroDTO membroDTO){
-		Membro membro = membroService.update(id, membroDTO);
-		return ResponseEntity.ok().body(new MembroDTO(membro));
+	public ResponseEntity<MembroDTO> update(@PathVariable Integer id, @Valid @RequestBody MembroDTO membroDTO) {
+	    Membro obj = membroService.update(id, membroDTO);
+	    return ResponseEntity.ok().body(new MembroDTO(obj));
 	}
 	
 	@DeleteMapping("/{id}")
