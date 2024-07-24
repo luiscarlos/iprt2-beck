@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.lc.iprt2.model.Endereco;
+import br.com.lc.iprt2.model.Igreja;
 
 public class IgrejaDTO implements Serializable {
 
@@ -43,4 +44,95 @@ public class IgrejaDTO implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	protected Endereco endereco;
+
+	
+	public IgrejaDTO() {
+		super();
+	}
+
+
+	/**
+	 * @param id
+	 * @param pastor
+	 * @param aniversarioPastor
+	 * @param dataAniversarioIgrejaDe
+	 * @param dataAniversarioIgrejaAte
+	 * @param endereco
+	 */
+
+
+
+	public IgrejaDTO(Igreja igrejaObj) {
+		super();
+		this.id = igrejaObj.getId();
+		this.pastor = igrejaObj.getPastor();
+		this.aniversarioPastor = igrejaObj.getAniversarioPastor();
+		this.dataAniversarioIgrejaDe = igrejaObj.getDataAniversarioIgrejaDe();
+		this.dataAniversarioIgrejaAte = igrejaObj.getDataAniversarioIgrejaAte();
+		this.endereco = igrejaObj.getEndereco();	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getPastor() {
+		return pastor;
+	}
+
+
+	public void setPastor(String pastor) {
+		this.pastor = pastor;
+	}
+
+
+	public LocalDate getAniversarioPastor() {
+		return aniversarioPastor;
+	}
+
+
+	public void setAniversarioPastor(LocalDate aniversarioPastor) {
+		this.aniversarioPastor = aniversarioPastor;
+	}
+
+
+	public LocalDate getDataAniversarioIgrejaDe() {
+		return dataAniversarioIgrejaDe;
+	}
+
+
+	public void setDataAniversarioIgrejaDe(LocalDate dataAniversarioIgrejaDe) {
+		this.dataAniversarioIgrejaDe = dataAniversarioIgrejaDe;
+	}
+
+
+	public LocalDate getDataAniversarioIgrejaAte() {
+		return dataAniversarioIgrejaAte;
+	}
+
+
+	public void setDataAniversarioIgrejaAte(LocalDate dataAniversarioIgrejaAte) {
+		this.dataAniversarioIgrejaAte = dataAniversarioIgrejaAte;
+	}
+
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	
+	
+	
+	
 }

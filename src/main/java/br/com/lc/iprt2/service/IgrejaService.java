@@ -37,6 +37,12 @@ public class IgrejaService {
 		java.util.Optional<Igreja> igreja = igrejaRepository.findById(id);
 		return igreja.orElseThrow(() -> new ObjectnotFoundException("Igreja não encontrado! id: " + id));
 	}
+	
+	
+	public List<Igreja> listar() {
+		return igrejaRepository.findAll();
+		 
+	}
 
 
 	
