@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.lc.iprt2.model.Endereco;
 import br.com.lc.iprt2.model.Igreja;
 
+
 public class IgrejaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,36 +22,29 @@ public class IgrejaDTO implements Serializable {
 	protected Integer id;
 
 	@NotNull
-	@NotBlank
 	protected String pastor;
+	
+	@NotNull
+	protected String nomeIgreja;
 
 	@NotNull
-	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate aniversarioPastor;
 
 	@NotNull
-	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataAniversarioIgrejaDe;
 
 	@NotNull
-	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataAniversarioIgrejaAte;
 
 	@NotNull
-	@NotBlank
-	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	protected Endereco endereco;
 
 	
-	public IgrejaDTO() {
-		super();
-	}
-
-
+	
 	/**
 	 * @param id
 	 * @param pastor
@@ -66,10 +60,30 @@ public class IgrejaDTO implements Serializable {
 		super();
 		this.id = igrejaObj.getId();
 		this.pastor = igrejaObj.getPastor();
+		this.nomeIgreja = igrejaObj.getNomeIgreja();
 		this.aniversarioPastor = igrejaObj.getAniversarioPastor();
 		this.dataAniversarioIgrejaDe = igrejaObj.getDataAniversarioIgrejaDe();
 		this.dataAniversarioIgrejaAte = igrejaObj.getDataAniversarioIgrejaAte();
-		this.endereco = igrejaObj.getEndereco();	}
+		this.endereco = igrejaObj.getEndereco();	
+		}
+	
+	
+	
+	public String getNomeIgreja() {
+		return nomeIgreja;
+	}
+
+
+
+	public void setNomeIgreja(String nomeIgreja) {
+		this.nomeIgreja = nomeIgreja;
+	}
+
+
+
+	public IgrejaDTO() {
+		super();
+	}
 
 
 	public Integer getId() {

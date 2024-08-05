@@ -14,9 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+import br.com.lc.iprt2.model.dtos.IgrejaDTO;
 
 
 
@@ -30,39 +34,67 @@ public class Igreja implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull(message ="O campo NOME é requerido!")
 	private String pastor;
-
+	
+	@NotNull(message ="O campo NOME DA IGREJA é requerido!")
+	private String nomeIgreja;
+	
+	@NotNull(message ="O campo Aniversário do pastor  é requerido!")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate aniversarioPastor;
 	
+	@NotNull(message ="O campo DATA DE ANIVER´SARIO INICIO é requerido!")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAniversarioIgrejaDe;
 	
+	@NotNull(message ="O campo DATA DE ANIVER´SARIO FIM é requerido!")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAniversarioIgrejaAte;
 	
-	
+	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
 	
+
 	
 	//@JsonIgnore
 	@OneToMany(mappedBy = "igreja")
 	List<Evento> eventos = new ArrayList<>();
 	
 	
+	
+	
+	
+	/**
+	 * 
+	 */
 	public Igreja() {
 		super();
 	}
 
 
 
-	public Igreja(Integer id, String pastor, LocalDate aniversarioPastor, LocalDate dataAniversarioIgrejaDe,
+	public Igreja(IgrejaDTO  igrejaDTO) {
+		super();
+		this.id = igrejaDTO.getId();
+		this.pastor = igrejaDTO.getPastor();
+		this.nomeIgreja = igrejaDTO.getNomeIgreja();
+		this.aniversarioPastor = igrejaDTO.getAniversarioPastor();
+		this.dataAniversarioIgrejaDe = igrejaDTO.getDataAniversarioIgrejaDe();
+		this.dataAniversarioIgrejaAte = igrejaDTO.getDataAniversarioIgrejaAte();
+		this.endereco = igrejaDTO.getEndereco();
+	}
+
+
+
+	public Igreja(Integer id, String pastor, String nomeIgreja, LocalDate aniversarioPastor, LocalDate dataAniversarioIgrejaDe,
 			LocalDate dataAniversarioIgrejaAte, Endereco endereco) {
 		super();
 		this.id = id;
 		this.pastor = pastor;
+		this.nomeIgreja = nomeIgreja;
 		this.aniversarioPastor = aniversarioPastor;
 		this.dataAniversarioIgrejaDe = dataAniversarioIgrejaDe;
 		this.dataAniversarioIgrejaAte = dataAniversarioIgrejaAte;
@@ -85,6 +117,18 @@ public class Igreja implements Serializable{
 
 	public Integer getId() {
 		return id;
+	}
+
+
+
+	public String getNomeIgreja() {
+		return nomeIgreja;
+	}
+
+
+
+	public void setNomeIgreja(String nomeIgreja) {
+		this.nomeIgreja = nomeIgreja;
 	}
 
 

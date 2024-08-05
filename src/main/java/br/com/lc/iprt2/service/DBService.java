@@ -70,9 +70,9 @@ public class DBService {
 			//Evento ev = new Evento(null, "Encontro de mulheres", LocalDate.now(), LocalDate.now(), Status.ABERTO, Departamento.HOMENS, "Teste evento", me, ig);
 			
 			EscalaCulto esc = new EscalaCulto(null, LocalDate.now(), me, Seguimento.CEIA, Departamento.HOMENS, "Ediel");
-			Igreja ig = new Igreja(null, "luis", LocalDate.now(), LocalDate.now(), LocalDate.now(), endereco);
+			//Igreja ig = new Igreja(null, "luis", LocalDate.now(), LocalDate.now(), LocalDate.now(), endereco);
 			//membroRepository.saveAll(Arrays.asList(me));
-			igrejaRepository.saveAll(Arrays.asList(ig));
+			//igrejaRepository.saveAll(Arrays.asList(ig));
 			//servicoRepository.saveAll(Arrays.asList(ser));
 			//eventoRepository.saveAll(Arrays.asList(ev));
 			//escalaCultoRepository.saveAll(Arrays.asList(esc));

@@ -24,41 +24,32 @@ public class MembroDTO implements Serializable {
 	protected Integer id;
 	
 	@NotNull
-	@NotBlank
 	protected String nome;
 	
 	@NotNull
-	@NotBlank
 	protected String email;
 	
 	@NotNull
-	@NotBlank
 	protected String senha;
 	
 	@NotNull
-	@NotBlank
 	protected String telefone;
 	
 	@NotNull
-	@NotBlank
 	protected UserRole role;
 	
 	@NotNull
-	@NotBlank
 	protected Dizimista dizimista;
 	
 	@NotNull
-	@NotBlank
 	protected Endereco endereco;
 	
 	
 	@NotNull
-	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataConversao;
 	
 	@NotNull
-	@NotBlank
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 

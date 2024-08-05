@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,11 +51,28 @@ public class IgrejaResource {
 		
 	}
 	
+	@PostMapping()
+	public ResponseEntity<IgrejaDTO> create(@Valid @RequestBody IgrejaDTO objDTO) { //HttpServletResponse response
+		
+		Igreja igrejaObj = igrejaService.create(objDTO);
+		
+		//MembroDTO igrejaDTO = new IgrejaDTO(igrejaObj);
 	
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(igrejaObj.getId()).toUri();
+		
+        //response.setHeader("Location", uri.toASCIIString());
+		
+		return ResponseEntity.created(uri).body(new IgrejaDTO(igrejaObj));
+	}
 	
-	
-	
-	
-	
+	@PutMapping("{id}")
+	public ResponseEntity<IgrejaDTO> update(@PathVariable Integer id, @Valid @RequestBody IgrejaDTO igrejaDTO  ){
+		Igreja igrejaObj = igrejaService.update(id, igrejaDTO);
+		
+		return ResponseEntity.ok().body(new IgrejaDTO(igrejaObj));
+		
+	}
 
 }
